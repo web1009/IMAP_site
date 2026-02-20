@@ -62,7 +62,7 @@
             ua.user_name AS trainer_name,
             s.strt_dt AS rsv_dt,
             s.strt_tm AS rsv_time,
-            IFNULL(r.review_written, 0) AS review_written
+            COALESCE(r.review_written, 0) AS review_written
         FROM reservation r
         INNER JOIN schedule s ON r.schd_id = s.schd_id
         INNER JOIN program p ON s.prog_id = p.prog_id
@@ -87,7 +87,7 @@
             ua.user_name AS trainer_name,
             s.strt_dt AS rsv_dt,
             s.strt_tm AS rsv_time,
-            IFNULL(r.review_written, 0) AS review_written
+            COALESCE(r.review_written, 0) AS review_written
         FROM reservation r
         INNER JOIN schedule s ON r.schd_id = s.schd_id
         INNER JOIN program p ON s.prog_id = p.prog_id
@@ -99,7 +99,7 @@
           AND r.stts_cd IN ('CONFIRMED', 'COMPLETED')
           AND COALESCE(pl.attendance_status, r.attendance_status) = 'ATTENDED'
           <if test="unwrittenOnly != null and unwrittenOnly == true">
-          AND IFNULL(r.review_written, 0) = 0
+          AND COALESCE(r.review_written, 0) = 0
           </if>
         ORDER BY r.rsv_dt DESC, r.rsv_time DESC
     </select>

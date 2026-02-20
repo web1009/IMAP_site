@@ -38,7 +38,7 @@
 
     <update id="increaseViews" parameterType="long">
         UPDATE community_post
-        SET views = IFNULL(views, 0) + 1,
+        SET views = COALESCE(views, 0) + 1,
             updated_at = NOW()
         WHERE post_id = #{postId}
           AND post_type = 'BLOG'

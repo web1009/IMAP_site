@@ -47,8 +47,10 @@ dependencies {
 	implementation 'com.oracle.database.jdbc:ucp'
 	implementation 'com.oracle.database.xml:xdb'
 	
-	// mariadb 의존성
+	// mariadb 의존성 (로컬 dev)
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+	// PostgreSQL (Render 등 prod)
+	runtimeOnly 'org.postgresql:postgresql'
 	
 	// TEST 의존성
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
