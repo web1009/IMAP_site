@@ -9,11 +9,11 @@ COPY build.gradle .
 COPY settings.gradle* ./
 
 # 소스 제외하고 의존성만 먼저 다운로드 (캐시 활용)
-RUN ./gradlew dependencies --no-daemon || true
+RUN chmod +x gradlew && ./gradlew dependencies --no-daemon || true
 
 # 소스 복사 후 빌드
 COPY src src
-RUN ./gradlew bootJar -x test --no-daemon
+RUN chmod +x gradlew && ./gradlew bootJar -x test --no-daemon
 
 # Run stage
 FROM eclipse-temurin:21-jre-alpine
