@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.app.reservation.mapper.MyReservationMapper">
+
+    <resultMap id="MyReservationRowMap" type="com.project.app.reservation.dto.MyReservationRowDto">
+        <id property="rsvId" column="rsv_id" />
+        <result property="schdId" column="schd_id" />
+        <result property="progId" column="prog_id" />
+        <result property="sportName" column="sport_name" />
+        <result property="brchNm" column="brch_nm" />
+        <result property="trainerName" column="trainer_name" />
+        <result property="rsvDt" column="rsv_dt" />
+        <result property="rsvTime" column="rsv_time" />
+        <result property="attendanceStatus" column="attendance_status" />
+    </resultMap>
+
+    <!-- 마이페이지 예약 목록: reservation 기준 (이용권 유무 관계없이 모두 표시) -->
+    <!-- attendance_status: 이용권 예약=pass_log, 일반 예약=reservation.attendance_status -->
+    <select id="findMyReservationsByUserId" resultMap="MyReservationRowMap">
+        SELECT
+            r.rsv_id,
+            r.schd_id,
+            p.prog_id,
+            st.sport_nm AS sport_name,
+            b.brch_nm,
+            ua.user_name AS trainer_name,
+            s.strt_dt AS rsv_dt,
+            s.strt_tm AS rsv_time,
+            COALESCE(pl.attendance_status, r.attendance_status, 'UNCHECKED') AS attendance_status
+        FROM reservation r
+        INNER JOIN schedule s ON r.schd_id = s.schd_id
+        INNER JOIN program p ON s.prog_id = p.prog_id
+        LEFT JOIN sport_type st ON p.sport_id = st.sport_id
+        INNER JOIN branch b ON s.brch_id = b.brch_id
+        LEFT JOIN users_admin ua ON s.user_id = ua.user_id
+        LEFT JOIN pass_log pl ON pl.user_pass_id = r.user_pass_id AND pl.schd_id = r.schd_id
+        WHERE r.user_id = #{userId}
+          AND r.stts_cd IN ('CONFIRMED', 'PENDING')
+        ORDER BY r.rsv_dt DESC, r.rsv_time DESC
+    </select>
+
+    <!-- 이용내역/리뷰: 출석(ATTENDED) 처리된 예약만 표시 -->
+    <resultMap id="PastHistoryRowMap" type="com.project.app.reservation.dto.PastHistoryRowDto">
+        <id property="rsvId" column="rsv_id" />
+        <result property="schdId" column="schd_id" />
+        <result property="progId" column="prog_id" />
+        <result property="sportName" column="sport_name" />
+        <result property="brchNm" column="brch_nm" />
+        <result property="trainerName" column="trainer_name" />
+        <result property="rsvDt" column="rsv_dt" />
+        <result property="rsvTime" column="rsv_time" />
+        <result property="reviewWritten" column="review_written" />
+    </resultMap>
+
+    <select id="findAttendedReservationsForHistory" resultMap="PastHistoryRowMap">
+        SELECT
+            r.rsv_id,
+            r.schd_id,
+            p.prog_id,
+            st.sport_nm AS sport_name,
+            b.brch_nm,
+            ua.user_name AS trainer_name,
+            s.strt_dt AS rsv_dt,
+            s.strt_tm AS rsv_time,
+            IFNULL(r.review_written, 0) AS review_written
+        FROM reservation r
+        INNER JOIN schedule s ON r.schd_id = s.schd_id
+        INNER JOIN program p ON s.prog_id = p.prog_id
+        LEFT JOIN sport_type st ON p.sport_id = st.sport_id
+        INNER JOIN branch b ON s.brch_id = b.brch_id
+        LEFT JOIN users_admin ua ON s.user_id = ua.user_id
+        LEFT JOIN pass_log pl ON pl.user_pass_id = r.user_pass_id AND pl.schd_id = r.schd_id
+        WHERE r.user_id = #{userId}
+          AND r.stts_cd IN ('CONFIRMED', 'COMPLETED')
+          AND COALESCE(pl.attendance_status, r.attendance_status) = 'ATTENDED'
+        ORDER BY r.rsv_dt DESC, r.rsv_time DESC
+    </select>
+
+    <!-- 리뷰 미작성만: review_written=0 (또는 NULL)인 예약만 -->
+    <select id="findAttendedReservationsForHistoryFiltered" resultMap="PastHistoryRowMap">
+        SELECT
+            r.rsv_id,
+            r.schd_id,
+            p.prog_id,
+            st.sport_nm AS sport_name,
+            b.brch_nm,
+            ua.user_name AS trainer_name,
+            s.strt_dt AS rsv_dt,
+            s.strt_tm AS rsv_time,
+            IFNULL(r.review_written, 0) AS review_written
+        FROM reservation r
+        INNER JOIN schedule s ON r.schd_id = s.schd_id
+        INNER JOIN program p ON s.prog_id = p.prog_id
+        LEFT JOIN sport_type st ON p.sport_id = st.sport_id
+        INNER JOIN branch b ON s.brch_id = b.brch_id
+        LEFT JOIN users_admin ua ON s.user_id = ua.user_id
+        LEFT JOIN pass_log pl ON pl.user_pass_id = r.user_pass_id AND pl.schd_id = r.schd_id
+        WHERE r.user_id = #{userId}
+          AND r.stts_cd IN ('CONFIRMED', 'COMPLETED')
+          AND COALESCE(pl.attendance_status, r.attendance_status) = 'ATTENDED'
+          <if test="unwrittenOnly != null and unwrittenOnly == true">
+          AND IFNULL(r.review_written, 0) = 0
+          </if>
+        ORDER BY r.rsv_dt DESC, r.rsv_time DESC
+    </select>
+
+    <update id="updateReviewWritten">
+        UPDATE reservation
+        SET review_written = #{reviewWritten}
+        WHERE rsv_id = #{rsvId}
+    </update>
+</mapper>

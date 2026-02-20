@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.app.application.mapper.AdminApplicationMapper">
+
+    <resultMap id="ApplicationResultMap" type="com.project.app.application.domain.ProgramApplication">
+        <id property="applicationId" column="application_id" />
+        <result property="name" column="name" />
+        <result property="phone" column="phone" />
+        <result property="program" column="program" />
+        <result property="motivation" column="motivation" />
+        <result property="status" column="status" />
+        <result property="regDt" column="reg_dt" />
+        <result property="updDt" column="upd_dt" />
+    </resultMap>
+
+    <select id="findAll" resultMap="ApplicationResultMap">
+        SELECT application_id, name, phone, program, motivation, status, reg_dt, upd_dt
+        FROM PROGRAM_APPLICATION
+        ORDER BY reg_dt DESC
+    </select>
+</mapper>

@@ -1,0 +1,102 @@
+/* Section */
+
+.slide-section {
+  padding: 8rem 1.5rem;
+  background: #f7f8fc; /* 연한 회색 배경 */
+}
+
+/* Header */
+
+.slide-header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.slide-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.slide-description {
+  color: #6c757d;
+}
+
+/* Grid: 세로로 큰 카드들이 쌓이는 구조 */
+
+.slide-grid {
+  max-width: 1040px;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+/* Card: KMA처럼 큰 화이트 카드 + 그림자 */
+
+.slide-card {
+  background: #fff;
+  border-radius: 24px;
+  padding: 2.5rem 3rem;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.18);
+
+  /* 초기 상태 (숨김) - 아래에 있다가 올라오는 느낌 */
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 0.8s ease;
+}
+
+/* 스크롤로 화면에 들어오면 위로 슬라이드 */
+
+.slide-card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 약간 딜레이 효과 */
+
+.slide-card:nth-child(2) {
+  transition-delay: 0.1s;
+}
+
+.slide-card:nth-child(3) {
+  transition-delay: 0.2s;
+}
+
+/* 텍스트 스타일 */
+
+.slide-text {
+  font-size: 1.15rem;
+  line-height: 1.9;
+  margin-bottom: 1.75rem;
+}
+
+.slide-author {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.slide-author span {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+/* Responsive */
+
+@media (max-width: 992px) {
+  .slide-card {
+    padding: 2.25rem 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .slide-section {
+    padding: 5rem 1.5rem;
+  }
+
+  .slide-card {
+    padding: 2rem 1.5rem;
+  }
+}

@@ -1,0 +1,157 @@
+.sign-section {
+  padding: 6rem 0;
+  background-color: #f8f9fa;
+}
+
+.sign-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 3rem;
+}
+
+.sign-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.sign-en {
+  display: block;
+  font-size: 0.9rem;
+  letter-spacing: 0.2em;
+  color: #1900ff;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+}
+
+.sign-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #212529;
+  margin: 0 0 1rem 0;
+}
+
+.sign-description {
+  font-size: 1.05rem;
+  color: #6c757d;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Form Styles */
+.sign-form {
+  background-color: #fff;
+  padding: 3rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.form-group {
+  margin-bottom: 2rem;
+}
+
+/* 입력 시 배경 글(placeholder) 숨김용 래퍼 */
+.form-group-input .input-placeholder-wrap {
+  position: relative;
+  display: block;
+}
+
+.form-group-input .input-placeholder-text {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  color: #adb5bd;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+
+.form-group-input .input-placeholder-text.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #212529;
+  margin-bottom: 0.5rem;
+  
+}
+
+.required {
+  color: #dc3545;
+  margin-left: 0.25rem;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  font-size: 1rem;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  font-family: inherit;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: #1900ff;
+  box-shadow: 0 0 0 3px rgba(171, 171, 171, 0.1);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-submit {
+  width: 100%;
+  padding: 1rem 2rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: #1900ff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  margin-top: 1rem;
+}
+
+.form-submit:hover {
+  background-color: #1400cc;
+  transform: translateY(-1px);
+}
+
+.form-submit:active {
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sign-section {
+    padding: 4rem 0;
+  }
+
+  .sign-container {
+    padding: 0 1.5rem;
+  }
+
+  .sign-title {
+    font-size: 2rem;
+  }
+
+  .sign-form {
+    padding: 2rem 1.5rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+}

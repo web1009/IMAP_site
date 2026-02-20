@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.app.schedule.mapper.ScheduleMapper">
+
+    <resultMap id="AdminScheduleListDtoMap" type="com.project.app.schedule.dto.AdminScheduleListDto">
+        <id property="scheduleId" column="schd_id" />
+        <result property="startTime" column="start_time" />
+        <result property="endTime" column="end_time" />
+        <result property="branchName" column="branch_name" />
+        <result property="programName" column="program_name" />
+        <result property="instructorName" column="instructor_name" />
+        <result property="reservedUserNames" column="reserved_user_names" />
+        <result property="currentCount" column="current_count" />
+        <result property="maxCount" column="max_count" />
+        <result property="status" column="status" />
+    </resultMap>
+
+    <select id="findAdminList" resultMap="AdminScheduleListDtoMap">
+        SELECT
+            s.schd_id,
+            CONCAT(s.strt_dt, ' ', DATE_FORMAT(s.strt_tm, '%H:%i')) AS start_time,
+            DATE_FORMAT(s.end_tm, '%H:%i') AS end_time,
+            b.brch_nm AS branch_name,
+            p.prog_nm AS program_name,
+            u.user_name AS instructor_name,
+            (SELECT GROUP_CONCAT(us.user_name ORDER BY r.rsv_id SEPARATOR ', ')
+             FROM reservation r
+             INNER JOIN users us ON r.user_id = us.user_id
+             WHERE r.schd_id = s.schd_id) AS reserved_user_names,
+            IFNULL(s.rsv_cnt, 0) AS current_count,
+            IFNULL(s.max_nop_cnt, 10) AS max_count,
+            s.stts_cd AS status
+        FROM schedule s
+        INNER JOIN branch b ON s.brch_id = b.brch_id
+        INNER JOIN program p ON s.prog_id = p.prog_id
+        LEFT JOIN users_admin u ON s.user_id = u.user_id
+        <where>
+            <if test="date != null and date != ''">
+                AND s.strt_dt = #{date}
+            </if>
+            <if test="branchId != null">
+                AND s.brch_id = #{branchId}
+            </if>
+        </where>
+        ORDER BY s.strt_dt DESC, s.strt_tm ASC
+    </select>
+
+    <resultMap id="ScheduleResultMap" type="com.project.app.schedule.domain.Schedule">
+        <id property="schdId" column="schd_id" />
+        <result property="brchId" column="brch_id" />
+        <result property="progId" column="prog_id" />
+        <result property="userId" column="user_id" />
+        <result property="strtDt" column="strt_dt" />
+        <result property="endDt" column="end_dt" />
+        <result property="strtTm" column="strt_tm" />
+        <result property="endTm" column="end_tm" />
+        <result property="maxNopCnt" column="max_nop_cnt" />
+        <result property="rsvCnt" column="rsv_cnt" />
+        <result property="sttsCd" column="stts_cd" />
+        <result property="description" column="description" />
+        <result property="regDt" column="reg_dt" />
+        <result property="updDt" column="upd_dt" />
+    </resultMap>
+
+    <!-- =========================
+         스케줄 전체 조회
+    ========================= -->
+    <select id="findAll"
+            resultMap="ScheduleResultMap">
+        SELECT
+            schd_id,
+            brch_id,
+            prog_id,
+            user_id,
+            strt_dt,
+            end_dt,
+            strt_tm,
+            end_tm,
+            max_nop_cnt,
+            rsv_cnt,
+            stts_cd,
+            description,
+            reg_dt,
+            upd_dt
+        FROM schedule
+        ORDER BY strt_dt DESC, strt_tm ASC
+    </select>
+
+    <!-- =========================
+         스케줄 ID로 조회
+    ========================= -->
+    <select id="findById"
+            parameterType="java.lang.Long"
+            resultMap="ScheduleResultMap">
+        SELECT
+            schd_id,
+            brch_id,
+            prog_id,
+            user_id,
+            strt_dt,
+            end_dt,
+            strt_tm,
+            end_tm,
+            max_nop_cnt,
+            rsv_cnt,
+            stts_cd,
+            description,
+            reg_dt,
+            upd_dt
+        FROM schedule
+        WHERE schd_id = #{schdId}
+    </select>
+
+    <!-- =========================
+         스케줄 생성
+    ========================= -->
+    <insert id="insert"
+            parameterType="com.project.app.schedule.domain.Schedule"
+            useGeneratedKeys="true"
+            keyProperty="schdId">
+        INSERT INTO schedule (
+            brch_id,
+            prog_id,
+            user_id,
+            strt_dt,
+            end_dt,
+            strt_tm,
+            end_tm,
+            max_nop_cnt,
+            rsv_cnt,
+            stts_cd,
+            description,
+            reg_dt,
+            upd_dt
+        ) VALUES (
+            #{brchId},
+            #{progId},
+            #{userId},
+            #{strtDt},
+            #{endDt},
+            #{strtTm},
+            #{endTm},
+            #{maxNopCnt},
+            #{rsvCnt},
+            #{sttsCd},
+            #{description},
+            #{regDt},
+            #{updDt}
+        )
+    </insert>
+
+    <!-- =========================
+         스케줄 수정
+    ========================= -->
+    <update id="update"
+            parameterType="com.project.app.schedule.domain.Schedule">
+        UPDATE schedule
+        SET
+            brch_id = #{brchId},
+            prog_id = #{progId},
+            user_id = #{userId},
+            strt_dt = #{strtDt},
+            end_dt = #{endDt},
+            strt_tm = #{strtTm},
+            end_tm = #{endTm},
+            max_nop_cnt = #{maxNopCnt},
+            stts_cd = #{sttsCd},
+            description = #{description},
+            upd_dt = #{updDt}
+        WHERE schd_id = #{schdId}
+    </update>
+
+    <!-- =========================
+         스케줄 삭제
+    ========================= -->
+    <delete id="delete"
+            parameterType="long">
+        DELETE FROM schedule
+        WHERE schd_id = #{schdId}
+    </delete>
+
+    <!-- =========================
+         중복 체크 (같은 날짜, 시간, 프로그램, 강사)
+    ========================= -->
+    <select id="countDuplicate"
+            resultType="int">
+        SELECT COUNT(*)
+        FROM schedule
+        WHERE prog_id = #{progId}
+          AND user_id = #{userId}
+          AND strt_dt = #{strtDt}
+          AND (
+            (strt_tm &lt; #{endTm} AND end_tm &gt; #{strtTm})
+          )
+          <if test="excludeSchdId != null">
+            AND schd_id != #{excludeSchdId}
+          </if>
+    </select>
+
+</mapper>
+

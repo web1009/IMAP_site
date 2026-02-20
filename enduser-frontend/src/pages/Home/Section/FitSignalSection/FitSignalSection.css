@@ -1,0 +1,166 @@
+/* 전체 섹션 */
+.fit-section {
+  background: #000;
+  padding: 120px 0;
+}
+
+/* 헤더 */
+.fit-header {
+  max-width: 1320px;
+  margin: 0 auto 80px;
+  padding: 0 24px;
+  text-align: left;
+}
+
+.fit-en {
+  display: block;
+  font-size: 1.1rem;
+  letter-spacing: 0.25em;
+  color: #1900ff;
+  margin-bottom: 12px;
+  opacity: 0.9;
+}
+
+.fit-title {
+  font-size: 4rem;
+  color: #fff;
+  margin-bottom: 16px;
+}
+
+.fit-desc {
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 520px;
+}
+
+/* 카드 컨테이너 */
+.fit-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 24px;
+
+  position: relative; /* hover 시 카드가 이 영역을 덮도록 기준 설정 */
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+
+/* 카드 */
+.fit-card {
+  position: relative;
+  height: 560px;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+
+  background-size: cover;
+  background-position: center;
+}
+
+/* 기본 화면 */
+.fit-card-front {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0, 0, 0, 0.35);
+  color: #fff;
+
+  z-index: 2;
+  transition: opacity 0.3s ease;
+}
+
+.fit-card-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+/* hover 화면 */
+.fit-card-back {
+  position: absolute;
+  inset: 0;
+  padding: 32px;
+
+  /* background: rgba(0, 0, 0, 0.9); */
+  color: #fff;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  opacity: 0;
+  transform: translateY(12px);
+  transition: all 0.35s ease;
+  z-index: 3;
+}
+
+/* hover 효과 */
+.fit-card:hover .fit-card-front {
+  opacity: 0;
+}
+
+.fit-card:hover .fit-card-back {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* === Load Map 카드: InfographicSection과 같은 확장 효과 === */
+.fit-card:hover {
+  /* 호버된 카드가 컨테이너 전체를 덮도록 절대 위치로 확장 */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateY(0) scale(1);
+  z-index: 5;
+
+  /* 배경 이미지를 크게 보여줌 */
+  background-size: cover;
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.55);
+}
+
+/* hover 텍스트 */
+.fit-card-en {
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  opacity: 0.6;
+  margin-bottom: 10px;
+}
+
+.fit-card-desc {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  opacity: 0.85;
+}
+
+/* 반응형 */
+@media (max-width: 1024px) {
+  .fit-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .fit-title {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .fit-container {
+    grid-template-columns: 1fr;
+  }
+
+  .fit-title {
+    font-size: 2.4rem;
+  }
+
+  .fit-card {
+    height: 420px;
+  }
+}
+
+

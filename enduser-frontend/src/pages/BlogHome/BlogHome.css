@@ -1,0 +1,445 @@
+/* BlogHome - 뉴스레터 스타일 (편지 형태) */
+
+.blog-newsletter-container {
+  min-height: 100vh;
+  background-color: #f5f0e8;
+}
+
+/* 편지 배경(책상/테이블 느낌) */
+.blog-newsletter-header {
+  padding: 3rem 1.5rem 5rem;
+  position: relative;
+  background: linear-gradient(180deg, #e8e0d5 0%, #f0ebe3 30%, #f5f0e8 100%);
+}
+
+/* 편지지 */
+.blog-letter-paper {
+  max-width: 980px;
+  margin: 0 auto;
+  position: relative;
+  background: #fefdfb;
+  padding: 2.5rem 2.25rem 3rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 2px;
+}
+
+/* 편지지 접힌 코너 */
+.blog-letter-fold {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 32px 32px 0;
+  border-color: transparent #ebe6df transparent transparent;
+  border-radius: 0 2px 0 0;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+/* 우표 영역 */
+.blog-letter-stamp {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #2d6a4f;
+  border: 2px dashed #2d6a4f;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* 편지 본문 */
+.blog-letter-content {
+  position: relative;
+  z-index: 1;
+}
+
+.blog-letter-greeting {
+  font-size: 1rem;
+  color: #5c5c5c;
+  margin: 0 0 1rem 0;
+  font-style: italic;
+}
+
+.blog-letter-title {
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: #1a2332;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: 0.02em;
+}
+
+.blog-letter-slogan {
+  font-size: 1.05rem;
+  color: #2d6a4f;
+  margin: 0 0 1.75rem 0;
+  font-weight: 500;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid #ebe6df;
+}
+
+.blog-letter-body {
+  color: #3d3d3d;
+  line-height: 1.85;
+}
+
+.blog-letter-body p {
+  margin: 0 0 0.9rem 0;
+  font-size: 0.95rem;
+}
+
+.blog-letter-body p:last-child {
+  margin-bottom: 0;
+}
+
+.blog-letter-sign {
+  margin: 1.5rem 0 0 0;
+  font-size: 0.9rem;
+  color: #6b7280;
+  font-style: italic;
+  text-align: right;
+}
+
+/* 지난 뉴스레터 섹션 */
+.blog-newsletter-list-section {
+  padding: 3rem 0;
+  background-color: #fff;
+}
+
+.blog-newsletter-list-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.blog-newsletter-list-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #212529;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.blog-newsletter-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.blog-newsletter-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem 0;
+  text-decoration: none;
+  color: inherit;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.2s;
+}
+
+.blog-newsletter-item:hover {
+  background-color: #fafafa;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+  border-radius: 8px;
+}
+
+.blog-newsletter-item:last-child {
+  border-bottom: none;
+}
+
+.blog-newsletter-item-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #FFC107;
+  border-radius: 50%;
+  margin-top: 0.5rem;
+  flex-shrink: 0;
+}
+
+.blog-newsletter-item-content {
+  flex: 1;
+}
+
+.blog-newsletter-item-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.blog-newsletter-item-prefix {
+  font-size: 0.9rem;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.blog-newsletter-item-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #212529;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.blog-newsletter-item-subtitle {
+  font-size: 0.95rem;
+  color: #555;
+  margin: 0.25rem 0 0.5rem 0;
+  line-height: 1.4;
+}
+
+.blog-newsletter-item-description {
+  font-size: 0.95rem;
+  color: #6c757d;
+  margin: 0.5rem 0;
+  line-height: 1.5;
+}
+
+.blog-newsletter-item-date {
+  font-size: 0.85rem;
+  color: #adb5bd;
+  margin-top: 0.5rem;
+}
+
+/* 페이지네이션 */
+.blog-pagination {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #f0f0f0;
+}
+
+.blog-pagination-button {
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: 1px solid #dee2e6;
+  background-color: #fff;
+  color: #212529;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  min-width: 40px;
+}
+
+.blog-pagination-button:hover:not(:disabled) {
+  background-color: #f8f9fa;
+  border-color: #FFC107;
+}
+
+.blog-pagination-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.blog-pagination-button.active {
+  background-color: #FFC107;
+  border-color: #FFC107;
+  color: #212529;
+  font-weight: 600;
+}
+
+.blog-pagination-button.active:hover {
+  background-color: #FFB300;
+  border-color: #FFB300;
+}
+
+/* 상세: 대제목 · 중제목 · 내용 구조 */
+.blog-post-header {
+  margin-bottom: 1.5rem;
+}
+
+.blog-post-title {
+  font-size: 1.75rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}
+
+.blog-post-subtitle {
+  font-size: 1.1rem;
+  color: #555;
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}
+
+.blog-post-meta {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+.blog-post-body {
+  margin-top: 1.5rem;
+}
+
+.blog-post-body-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+/* 상세 본문 HTML (리치 텍스트, 이미지) */
+.blog-post-content-html {
+  word-break: keep-all;
+  line-height: 1.7;
+}
+
+.blog-post-content-html img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+.blog-post-content-html p {
+  margin-bottom: 0.75rem;
+}
+
+.blog-post-content-html strong {
+  font-weight: 700;
+}
+
+.blog-post-content-html u {
+  text-decoration: underline;
+}
+
+/* 상세페이지: 기사 레이아웃 카드 */
+.blog-post-article {
+  position: relative;
+  background-color: #fefaf3;
+  border-radius: 10px;
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.06);
+  padding: 50px 22px;
+  border: 1px solid rgba(148, 131, 91, 0.3);
+  margin: 40px auto 56px;
+  max-width: 860px;
+  overflow: hidden;
+}
+
+/* 편지지 줄무늬 효과 */
+.blog-post-article::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(148, 131, 91, 0.08) 0,
+    rgba(148, 131, 91, 0.08) 1px,
+    transparent 1px,
+    transparent 26px
+  );
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.blog-post-header,
+.blog-post-body {
+  position: relative;
+  z-index: 1;
+}
+
+.blog-post-body {
+  margin-top: 1.75rem;
+  border-top: 1px dashed rgba(148, 131, 91, 0.5);
+  padding-top: 1.5rem;
+}
+
+.blog-post-content {
+  font-size: 1.05rem;
+  color: #3f3a34;
+}
+
+.blog-post-content-html {
+  font-family: "Georgia", "Times New Roman", serif;
+  line-height: 2;
+  letter-spacing: -0.01em;
+}
+
+.blog-post-content-html p {
+  margin-bottom: 1.2rem;
+}
+
+.blog-post-content-html h1,
+.blog-post-content-html h2,
+.blog-post-content-html h3,
+.blog-post-content-html h4 {
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.blog-post-content-html ul,
+.blog-post-content-html ol {
+  padding-left: 1.5rem;
+  margin: 0.75rem 0 1.25rem;
+}
+
+.blog-post-content-html li {
+  margin-bottom: 0.4rem;
+}
+
+@media (max-width: 768px) {
+  .blog-post-article {
+    padding: 24px 14px;
+    border-radius: 10px;
+  }
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .blog-newsletter-header {
+    padding: 2rem 1rem 4rem;
+  }
+
+  .blog-letter-paper {
+    padding: 2rem 1.5rem 2.5rem;
+  }
+
+  .blog-letter-title {
+    font-size: 1.5rem;
+  }
+
+  .blog-letter-slogan {
+    font-size: 0.95rem;
+  }
+
+  .blog-letter-stamp {
+    width: 44px;
+    height: 44px;
+    font-size: 0.55rem;
+    top: 1rem;
+    right: 1rem;
+  }
+
+  .blog-newsletter-item-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .blog-newsletter-item-prefix {
+    font-size: 0.85rem;
+  }
+
+  .blog-newsletter-item-title {
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.app.notice.mapper.NoticeMapper">
+
+    <!-- =========================
+         USER 공지 목록 조회
+         - 숨김 제외
+         - 종료된 공지 제외
+         - 상시 공지는 유지
+         - 지점명(branchName) JOIN
+    ========================= -->
+    <select id="selectNoticeList"
+            resultType="com.project.app.notice.dto.NoticeDto">
+
+        SELECT
+            cp.post_id      AS postId,
+            cp.title        AS title,
+            cp.content      AS content,
+            cp.views        AS views,
+            cp.display_end  AS displayEnd,
+            cp.created_at   AS createdAt,
+            b.brch_nm       AS branchName
+        FROM community_post cp
+        LEFT JOIN branch b
+            ON cp.branch_id = b.brch_id
+        WHERE cp.post_type = 'NOTICE'
+          AND cp.is_visible = 1
+          AND (
+                cp.display_end IS NULL
+                OR cp.display_end >= NOW()
+          )
+        ORDER BY cp.created_at DESC
+
+    </select>
+
+    <!-- =========================
+         USER 공지 상세 조회
+         - 숨김 제외
+         - 종료된 공지 접근 불가
+         - 지점명(branchName) JOIN
+    ========================= -->
+    <select id="selectNoticeDetail"
+            parameterType="long"
+            resultType="com.project.app.notice.dto.NoticeDto">
+
+        SELECT
+            cp.post_id      AS postId,
+            cp.title        AS title,
+            cp.content      AS content,
+            cp.views        AS views,
+            cp.display_end  AS displayEnd,
+            cp.created_at   AS createdAt,
+            b.brch_nm       AS branchName
+        FROM community_post cp
+        LEFT JOIN branch b
+            ON cp.branch_id = b.brch_id
+        WHERE cp.post_id = #{postId}
+          AND cp.post_type = 'NOTICE'
+          AND cp.is_visible = 1
+          AND (
+                cp.display_end IS NULL
+                OR cp.display_end >= NOW()
+          )
+
+    </select>
+
+    <!-- =========================
+         조회수 증가
+         - 숨김/종료 공지는 증가 안 됨
+    ========================= -->
+    <update id="increaseViews" parameterType="long">
+
+        UPDATE community_post
+        SET views = IFNULL(views, 0) + 1,
+            updated_at = NOW()
+        WHERE post_id = #{postId}
+          AND post_type = 'NOTICE'
+          AND is_visible = 1
+          AND (
+                display_end IS NULL
+                OR display_end >= NOW()
+          )
+
+    </update>
+
+</mapper>
