@@ -93,10 +93,40 @@
 
 @media (max-width: 768px) {
   .slide-section {
-    padding: 5rem 1.5rem;
+    padding: 3rem 1rem 4rem;
+  }
+
+  .slide-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .slide-title {
+    font-size: 1.75rem;
+  }
+
+  .slide-grid {
+    gap: 1.5rem;
   }
 
   .slide-card {
-    padding: 2rem 1.5rem;
+    padding: 1.5rem 1.25rem;
+  }
+
+  .slide-text {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .slide-section {
+    padding: 2.5rem 0.75rem 3rem;
+  }
+
+  .slide-title {
+    font-size: 1.5rem;
+  }
+
+  .slide-card {
+    padding: 1.25rem 1rem;
   }
 }

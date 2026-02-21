@@ -199,3 +199,74 @@
   font-size: 1.125rem;
   border-radius: 0.3rem;
 }
+
+/* 모바일: 센터 안내 한 화면에 맞게 축소 */
+@media (max-width: 768px) {
+  .section-container {
+    padding: 0 1rem;
+  }
+  .page-header {
+    margin: 2rem 0;
+  }
+  .page-title {
+    font-size: 1.5rem;
+  }
+  .page-subtitle {
+    font-size: 1rem;
+  }
+  .section-header {
+    margin-bottom: 2rem;
+  }
+  .section-title {
+    font-size: 1.15rem;
+  }
+  .section-text,
+  .section-subtitle {
+    font-size: 1rem;
+  }
+  .section-col-image {
+    margin-bottom: 2rem;
+  }
+  .team-grid {
+    gap: 2rem;
+    grid-template-columns: 1fr;
+  }
+  .team-item {
+    margin-bottom: 2rem;
+    grid-template-columns: 1fr;
+  }
+  .team-name {
+    font-size: 1rem;
+  }
+  .team-role {
+    font-size: 0.9rem;
+  }
+  .button-primary,
+  .button-large {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-container {
+    padding: 0 0.75rem;
+  }
+  .page-header {
+    margin: 1.5rem 0;
+  }
+  .page-title {
+    font-size: 1.35rem;
+  }
+  .page-subtitle {
+    font-size: 0.9rem;
+  }
+  .section-text,
+  .section-subtitle {
+    font-size: 0.9rem;
+  }
+  .team-grid {
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+  }
+}

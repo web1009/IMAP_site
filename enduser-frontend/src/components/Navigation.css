@@ -255,67 +255,102 @@
   font-weight: 500;
 }
 
+/* 모바일: 네비게이션 한 줄에 표시 (햄버거 없이 로고·메뉴·로그인 한 줄) */
 @media (max-width: 991px) {
   .nav-container {
-    padding: 0 1.25rem;
+    padding: 0 0.5rem;
+    flex-wrap: nowrap;
+    gap: 0.25rem;
   }
 
   .nav-toggle {
-    display: block;
-    color: #fff;
-    border-color: rgba(255, 255, 255, 0.3);
-  }
-
-  .nav-main.nav-scrolled .nav-toggle {
-    color: #212529;
-    border-color: rgba(33, 37, 41, 0.3);
-  }
-
-  .nav-menu-collapse {
     display: none;
   }
 
-  .nav-menu-collapse.show {
-    display: block;
+  .nav-menu-collapse {
+    display: flex !important;
+    flex-basis: auto;
+    flex-grow: 1;
+    min-width: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .nav-menu-collapse::-webkit-scrollbar {
+    display: none;
   }
 
   .nav-menu-list {
-    flex-direction: column;
-    background-color: rgba(33, 37, 41, 0.95);
-    padding: 1rem;
-    border-radius: 0.25rem;
-    margin-top: 1rem;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin: 0 auto;
+    gap: 0;
+    padding: 0;
   }
 
-  .nav-main.nav-scrolled .nav-menu-list {
-    background-color: #0b2c7d;
+  .nav-menu-item {
+    flex-shrink: 0;
   }
 
   .nav-menu-link {
+    padding: 0.35rem 0.4rem;
+    font-size: 0.7rem;
+    white-space: nowrap;
     color: #fff;
   }
 
   .nav-main.nav-scrolled .nav-menu-link {
-    color: #212529;
-  }
-
-  .nav-menu-login {
     color: #fff;
   }
 
-  .nav-main.nav-scrolled .nav-menu-login {
-    color: #212529;
+  .nav-menu-link:hover {
+    color: #ffc107;
   }
 
-  /* 모바일에서 로그인 버튼 크기/위치 정리 */
+  .nav-main.nav-scrolled .nav-menu-link:hover {
+    color: #ffc107;
+  }
+
+  .nav-dropdown-menu {
+    font-size: 0.8rem;
+  }
+
+  .nav-dropdown-item {
+    padding: 0.35rem 0.75rem;
+  }
+
   .nav-login-area {
-    flex: 0;
-    margin-left: 0.5rem;
+    flex: 0 0 auto;
+    margin-left: 0.25rem;
   }
 
   .nav-login-area button {
-    font-size: 0.8rem;
-    padding: 6px 10px;
+    font-size: 0.7rem;
+    padding: 0.35rem 0.5rem;
+  }
+
+  .nav-logo-img {
+    height: 28px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 0 0.4rem;
+  }
+
+  .nav-menu-link {
+    padding: 0.3rem 0.3rem;
+    font-size: 0.65rem;
+  }
+
+  .nav-logo-img {
+    height: 24px;
+  }
+
+  .nav-login-area button {
+    font-size: 0.65rem;
+    padding: 0.3rem 0.4rem;
   }
 }
 

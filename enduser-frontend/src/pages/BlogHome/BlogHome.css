@@ -443,3 +443,64 @@
     font-size: 1rem;
   }
 }
+
+/* 모바일 480px: 커뮤니티(블로그) 더 축소 */
+@media (max-width: 480px) {
+  .blog-newsletter-header {
+    padding: 1.5rem 0.75rem 3rem;
+  }
+  .blog-letter-paper {
+    padding: 1.5rem 1rem 2rem;
+  }
+  .blog-letter-title {
+    font-size: 1.25rem;
+  }
+  .blog-letter-slogan {
+    font-size: 0.85rem;
+  }
+  .blog-letter-greeting {
+    font-size: 0.85rem;
+  }
+  .blog-letter-body p {
+    font-size: 0.85rem;
+  }
+  .blog-letter-stamp {
+    width: 36px;
+    height: 36px;
+    font-size: 0.5rem;
+    top: 0.75rem;
+    right: 0.75rem;
+  }
+  .blog-newsletter-list-container {
+    padding: 0 1rem;
+  }
+  .blog-newsletter-list-title {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+  .blog-newsletter-item {
+    padding: 1rem 0;
+  }
+  .blog-newsletter-item-title {
+    font-size: 0.9rem;
+  }
+  .blog-newsletter-item-subtitle,
+  .blog-newsletter-item-description {
+    font-size: 0.85rem;
+  }
+  .blog-pagination-button {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    min-width: 32px;
+  }
+  .blog-post-article {
+    padding: 16px 10px;
+    margin: 24px auto 32px;
+  }
+  .blog-post-title {
+    font-size: 1.35rem;
+  }
+  .blog-post-subtitle {
+    font-size: 0.95rem;
+  }
+}

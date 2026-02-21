@@ -76,6 +76,39 @@
   z-index: 6; /* 버블·스퀘어 박스보다 항상 위에 보이도록 */
 }
 
+/* 모바일: 메인 히어로 축소 */
+@media (max-width: 768px) {
+  .hero-content-wrapper {
+    padding: 80px 1.5rem 60px;
+  }
+  .hero-title {
+    font-size: 1.6rem;
+  }
+  .hero-description {
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+  }
+  .hero-dots {
+    bottom: 1.5rem;
+  }
+  .hero-dot {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content-wrapper {
+    padding: 60px 1rem 40px;
+  }
+  .hero-title {
+    font-size: 1.35rem;
+  }
+  .hero-description {
+    font-size: 0.85rem;
+  }
+}
+
 .hero-dot {
   width: 10px;
   height: 10px;

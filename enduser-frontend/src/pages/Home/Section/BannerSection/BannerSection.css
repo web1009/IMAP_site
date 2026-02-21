@@ -141,21 +141,21 @@
 /* ===== Mobile (center button) ===== */
 @media (max-width: 768px) {
   .banner-section {
-    height: 560px;
+    height: 480px;
   }
 
   .banner-content {
-    top: -120px;
+    top: -100px;
     padding: 0 16px;
   }
 
   .banner-title {
-    font-size: 2.1rem;
+    font-size: 2rem;
   }
 
   .banner-signup-btn {
-    left: 28%;
-    bottom: -20%;
+    left: 25%;
+    bottom: -18%;
     transform: translateX(-50%);
     padding: 12px 28px;
     font-size: 1.1rem;
@@ -172,5 +172,25 @@
 
   .banner-signup-btn:active {
     transform: translateX(-50%) translateY(-1px) scale(1.02);
+  }
+}
+
+@media (max-width: 480px) {
+  .banner-section {
+    height: 420px;
+  }
+
+  .banner-content {
+    top: -80px;
+  }
+
+  .banner-title {
+    font-size: 1.5rem;
+  }
+
+  .banner-signup-btn {
+    padding: 10px 22px;
+    font-size: 1rem;
+    bottom: -15%;
   }
 }

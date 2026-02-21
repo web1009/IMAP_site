@@ -234,12 +234,84 @@
     box-shadow: 0 12px 25px rgba(255, 193, 7, 0.3);
 }
 
+/* 모바일: 예약 결제 한 화면에 맞게 축소 */
+@media (max-width: 768px) {
+    .payment-page-container {
+        margin: 32px auto;
+        padding: 0 1rem;
+    }
+    .reservation-summary {
+        padding: 24px;
+        margin-bottom: 20px;
+    }
+    .reservation-summary p {
+        font-size: 1rem;
+        margin: 10px 0;
+    }
+    .payment-method-selection,
+    .userpass-selection {
+        padding: 20px;
+        margin-bottom: 18px;
+    }
+    .payment-method-selection h3,
+    .userpass-selection h3 {
+        font-size: 1.1em;
+        margin-bottom: 14px;
+    }
+    .payment-type-btn {
+        padding: 10px;
+        font-size: 0.95em;
+    }
+    .pay-method-options label {
+        padding: 12px;
+        font-size: 0.9rem;
+    }
+    .final-payment-button {
+        padding: 14px 0;
+        font-size: 1.1em;
+    }
+    .back-button {
+        padding: 14px 0;
+        font-size: 1em;
+    }
+}
+
 /* 반응형 모바일: 화면이 좁아지면 다시 세로로 배치 */
 @media (max-width: 480px) {
+    .payment-page-container {
+        margin: 24px auto;
+        padding: 0 0.75rem;
+    }
+    .reservation-summary {
+        padding: 16px;
+        margin-bottom: 16px;
+    }
+    .reservation-summary p {
+        font-size: 0.9rem;
+        margin: 8px 0;
+    }
+    .payment-method-selection,
+    .userpass-selection {
+        padding: 14px;
+    }
+    .payment-method-selection h3,
+    .userpass-selection h3 {
+        font-size: 1rem;
+    }
+    .payment-type-btn {
+        padding: 8px;
+        font-size: 0.85em;
+    }
+    .pay-method-options label {
+        min-width: 100%;
+        padding: 10px;
+    }
     .payment-actions {
-        flex-direction: column-reverse; /* 모바일은 확정 버튼이 위로 가도록 */
+        flex-direction: column-reverse;
     }
     .back-button, .final-payment-button {
         width: 100%;
+        padding: 12px 0;
+        font-size: 0.95em;
     }
 }

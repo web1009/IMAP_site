@@ -47,9 +47,16 @@
   }
 }
 
-/* ===== Mobile (Main layout) ===== */
+/* ===== Mobile: 메인 한 화면에 맞게 축소 ===== */
 @media (max-width: 768px) {
   .section-container {
-    padding: 0 1.25rem;
+    padding: 0 1rem;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-container {
+    padding: 0 0.75rem;
   }
 }

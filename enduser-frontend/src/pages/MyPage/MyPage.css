@@ -1418,6 +1418,139 @@
   }
 }
 
+/* 모바일 480px: 마이페이지 더 축소해 한 화면에 */
+@media (max-width: 480px) {
+  .mypage-main {
+    padding: 0.75rem;
+  }
+  .mypage-profile-section {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  .avatar-circle {
+    width: 56px;
+    height: 56px;
+    font-size: 2rem;
+  }
+  .profile-name {
+    font-size: 1.35rem;
+  }
+  .profile-email {
+    font-size: 1.2rem;
+  }
+  .body-info-link {
+    font-size: 1.2rem;
+  }
+  .profile-quick-links {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+  .quick-link-item {
+    padding: 0.75rem;
+  }
+  .quick-link-icon {
+    font-size: 1.75rem;
+  }
+  .quick-link-label {
+    font-size: 0.95rem;
+  }
+  .mypage-reservation-section,
+  .mypage-recommendation-section,
+  .mypage-content-section {
+    padding: 1.25rem;
+  }
+  .reservation-title,
+  .recommendation-title {
+    font-size: 1.35rem;
+  }
+  .content-title {
+    font-size: 1.5rem;
+  }
+  .reservation-table th,
+  .reservation-table td {
+    padding: 0.5rem 0.35rem;
+    font-size: 0.9rem;
+  }
+  .reservation-status-section {
+    padding: 1rem 0.75rem;
+    gap: 0.75rem;
+  }
+  .status-count-number {
+    font-size: 2rem;
+  }
+  .status-count-label {
+    font-size: 1.2rem;
+  }
+  .class-cards-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .class-card-image {
+    height: 160px;
+  }
+  .class-card-name {
+    font-size: 1.1rem;
+  }
+  .btn-submit {
+    font-size: 1rem;
+    padding: 0.6rem 1.25rem;
+  }
+  .search-input {
+    font-size: 1.2rem;
+  }
+  .search-button {
+    font-size: 1.2rem;
+    padding: 0.6rem 1rem;
+  }
+  .category-image {
+    width: 120px;
+    height: 120px;
+  }
+  .category-name {
+    font-size: 0.9rem;
+  }
+  .review-tab {
+    font-size: 1.2rem;
+  }
+  .review-item-image,
+  .review-written-image {
+    width: 80px;
+    height: 80px;
+  }
+  .review-item-title,
+  .review-written-title {
+    font-size: 1.1rem;
+  }
+  .usage-item-header {
+    padding-left: 0;
+  }
+  .usage-item-content {
+    padding-left: 0;
+  }
+  .usage-item-image {
+    width: 80px;
+    height: 80px;
+  }
+  .usage-item-actions {
+    position: static;
+    width: auto;
+    margin-top: 0.5rem;
+  }
+  .reservation-board-title {
+    font-size: 1rem;
+  }
+  .reservation-board-table {
+    font-size: 0.8rem;
+  }
+  .calendar-month-title {
+    font-size: 1.35rem;
+  }
+  .calendar-nav-button {
+    font-size: 1.25rem;
+  }
+}
+
 /* Attendance Section Styles */
 .attendance-section {
   padding: 1.25rem;
