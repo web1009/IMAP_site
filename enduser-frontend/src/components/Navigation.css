@@ -45,8 +45,16 @@
   font-size: 1.75rem;
   font-weight: 700;
   padding: 0.5rem 0;
-  transition: color 0.3s ease-in-out;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  transition: opacity 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+}
+
+.nav-logo-img {
+  height: 36px;
+  width: auto;
+  display: block;
+  object-fit: contain;
 }
 
 .nav-main.nav-scrolled .nav-logo {
@@ -54,12 +62,12 @@
   text-shadow: none;
 }
 
-.nav-logo:hover {
-  color: #0b2c7d;
+.nav-logo:hover .nav-logo-img {
+  opacity: 0.9;
 }
 
-.nav-main.nav-scrolled .nav-logo:hover {
-  color: #fff;
+.nav-main.nav-scrolled .nav-logo:hover .nav-logo-img {
+  opacity: 0.9;
 }
 
 .nav-toggle {

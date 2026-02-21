@@ -61,7 +61,9 @@ function Navigation() {
   return (
     <nav className={`nav-main ${isScrolled ? 'nav-scrolled' : ''}`}>
       <div className="nav-container">
-        <Link className="nav-logo" to="/">IMAP</Link>
+        <Link className="nav-logo" to="/">
+          <img src="/imap.png" alt="IMAP" className="nav-logo-img" />
+        </Link>
         <button
           className="nav-toggle"
           type="button"
