@@ -29,19 +29,20 @@ public class SecurityConfig {
             .cors(cors -> {})
 
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+//                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
                 // 공개 API
-                .requestMatchers(
-                        "/api/login",
-                        "/api/adminLogin",
-                        "/api/schedules/**",
-                        "/api/sporttypes/**",
-                        "/api/branches/**",
-                        "/api/user/blog/**",
-                        "/api/user/faq/**",
-                        "/api/user/notice/**"
-                ).permitAll()
+//                .requestMatchers(
+//                        "/api/login",
+//                        "/api/adminLogin",
+//                        "/api/schedules/**",
+//                        "/api/sporttypes/**",
+//                        "/api/branches/**",
+//                        "/api/user/blog/**",
+//                        "/api/user/faq/**",
+//                        "/api/user/notice/**"
+//                ).permitAll()
+                .requestMatchers("/api/**").permitAll()
 
                 // 필요하면 인증 적용
                 .requestMatchers(
